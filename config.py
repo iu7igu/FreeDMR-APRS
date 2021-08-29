@@ -123,6 +123,7 @@ def build_config(_config_file):
 
     CONFIG = {}
     CONFIG['GLOBAL'] = {}
+    CONFIG['APRS'] = {}
     CONFIG['REPORTS'] = {}
     CONFIG['LOGGER'] = {}
     CONFIG['ALIASES'] = {}
@@ -146,6 +147,15 @@ def build_config(_config_file):
                     'ANNOUNCEMENT_LANGUAGES': config.get(section, 'ANNOUNCEMENT_LANGUAGES'),
                     'SERVER_ID': config.getint(section, 'SERVER_ID').to_bytes(4, 'big')
                     
+                })
+            
+            elif section == 'APRS':
+                CONFIG['APRS'].update({
+                    'ENABLED': config.getboolean(section, 'ENABLED'),
+                    'CALLSIGN': config.get(section, 'CALLSIGN'),
+                    'REPORT_INTERVAL': config.getint(section, 'REPORT_INTERVAL'),
+                    'SERVER': config.get(section, 'SERVER'),
+                    'MESSAGE': config.get(section, 'MESSAGE')
                 })
 
             elif section == 'REPORTS':
